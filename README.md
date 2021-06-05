@@ -1,165 +1,133 @@
+<div align="center">
 
-These setup instructions follow **Week 1**, Test-Driven Development with C# from Epicodus's [C# and .Net curriculum](https://www.learnhowtoprogram.com/c-and-net)
+# Dr. Sillystringz's Factory
 
-Setting up project from scratch
+</div>
 
-[MSTest Configuration and Setup](https://www.learnhowtoprogram.com/c-and-net/test-driven-development-with-c/mstest-configuration-and-setup)
+<h3 align="center">Description of application, June-05-2021</h3>
+<h4 align="center"> By Saoud Rana</h4>
 
-After running `dotnet restore` and generating `obj` directories. In root directory:
-    `touch .gitignore` and add to file `*/obj/`
+## Description
 
-[MSTest Writing and Running Tests](https://www.learnhowtoprogram.com/c-and-net/test-driven-development-with-c/mstest-writing-and-running-tests)
 
-After setup, navigate to TDDcsharp.Tests and run `dotnet test`
-Tests will pass, even without testing code, because it didn't receive any compiler errors.
 
-add `*/bin/` to .gitignore. Generated after running dotnet test
 
-[Our First Tests with MSTest](https://www.learnhowtoprogram.com/c-and-net/test-driven-development-with-c/our-first-tests-with-mstest)
+## Specifications
 
-Following "Red, Green, Refactor" Workflow, test for isCar was added in this order:
+## Setup/Installation Requirements
+Go to `Factory.Solution` Folder and create a file called `appsettings.json` file and input the following script (note the name of the database below needs to match the name of the database you created) Also change `[ENTERPASSWORDHERE]` to the password you set prior.
 
-1. Identify the simplest possible behavior the program must exhibit"
-
-```csharp
-my notes: "If string equals "car" return boolean true"
+```{
+  "ConnectionStrings": {
+      "DefaultConnection": "Server=localhost;Port=3306;database=saoud_rana;uid=root;pwd=[ENTERPASSWORDHERE];"
+  }
+}
 ```
+##### Software Requirements
 
-2. Write a coded test
+1. Internet browser
+2. A code editor such as VSCode to view and edit the code
+3. .NET or follow along with the Installing .NET instructions to install .NET
 
-ModelTests/CarDealership.cs
-Note: Typo from previous commit. Change "public class CarDealership" to "public class CarDealershipTest
-```csharp
-    [TestClass]
-    public class CarDealershipTests
-    {
-        [TestMethod]
-        public void isCar_StringEqualCar_True()
-        {
-            CarDealership testCarDealership = new CarDealership();
-            Assert.AreEqual(true, testCarDealership.isCar("car"));
-        }
-    }
+##### Open Locally
+
+- Click on the link to my repository: [My Repository](https://github.com/saoud/Factory.Solution.git)
+- Click on the green "Code" button and copy the repository URL
+- Open your terminal and use the command `git clone REPO URL HERE` into the directory you would like to clone the repository
+- Open in text editor to view code and make changes
+
+##### Installing .NET
+
+In order to run the application, please install .NET for your computer to recognize the `dotnet` command.
+
+1. Download [.NET Core SDK (Software Development Kit)](https://dotnet.microsoft.com/download/dotnet). Clicking this link will prompt a file download for your particular OS from Microsoft.
+2. Open the file. Follow the installation steps.
+3. Confirm the installation is successful by opening your terminal and running the command `dotnet --version`. The response should be something similar to this:`5.0.100`. This means it was successfully installed.
+
+##### Installing MySQL
+
+MySQL is a type of database software used to create, edit, query, and manage SQL data.
+
+- For Mac Users please [Click Here](https://dev.mysql.com/downloads/file/?id=484914) to download MySQL Installer
+- For Windows Users please [Click Here](https://dev.mysql.com/downloads/file/?id=484919)
+
+- Verify MySQL installation by opening the terminal and entering the command `mysql -uroot -p[THEPASSWORDYOUSELECTED]`
+- If you gain access you will see see the MYSQL command line!
+
+##### Installing MySQL Workbench
+
+- Please [Click Here](https://dev.mysql.com/downloads/workbench/) to install the correct version for your machine
+- Open MySQL Workbench and select `Local instance 3306 server`. You will need to enter the password you selected
+
+##### Compiling
+
+- Navigate to the TODO folder in the command line
+- Use the command `dotnet build` to compile
+
+##### Installing Packages
+
+- Navigate to the TODO folder in the command line
+- Use the command `dotnet restore`
+
+<details>
+### Update Database Using MySQL Workbench
+
+1. Open MySQL Workbench
+2. Click on Server > Data Import in the top navigation bar
+3. Select `Import from Self-Contained File`
+4. Select the `Default Target Schema` or create new schema
+5. Select all Schema Objects you would like to import
+6. Select `Dump Structure and Data`
+7. Click `Start Import`
+
+  <summary>Expand for Database Installation Essentials!</summary>
+
+### Import Database Using Entity Framework Core
+
+1. Navigate to TODO directory in terminal
+2. Use the command `dotnet ef database update` to generate the database through Entity Framework Core
+
+### Update Database Using Entity Framework Core
+
+1. Write any new code you wish to add to the database. Use the command `dotnet build` to check for any compiling errors. If no errors, proceed to step 2.
+2. To update the database with any changes made to the code, use the command `dotnet ef migrations add [MigrationsName]`
+3. Use the command `dotnet ef database update` to update the database
+
+
+</details>
+
+##### View In Browser
+
+- To view in browser, navigate to TODO folder in the command line
+- Use the command `dotnet run` to execute the compiled code and start a localhost
+- In browser navigate to http://localhost:5000
+- Or Navigate to  https://localhost:5001 for the SSL version.
+
+## Known Bugs
+
+TODO
+
+## Support and Contact Details
+
+If any errors or bugs occur with installation, delete both bin and obj folders and follow the Compiling and Installing Packages instructions again. Get help or report a bug you have found in the .NET platform at [.NET Support](https://dotnet.microsoft.com/platform/support). Or please email me, <githubissues@saoud.dev>.
+
+## Technologies Used
 ```
-
-
-TDDcsharp/Models/CarDealership.cs 
-(Nothing has changed. No code added yet)
-```csharp
-    public class CarDealership
-    {
-        public bool isCar(string car)
-        {
-            return false;
-        }
-    }
+- .NET Core 5.0.1
+- ASP.NET Core MVC
+- ASP.NET Core Razor Pages
+- Bootstrap
+- C#
+- CSS
+- Entity Framework Core
+- GitHub
+- HTML
+- MySQL
+- MySQL Workbench
+- VS Code
 ```
+### License
 
-3. Confirm Test Fails
-
-Navigate to TDDcsharp.Tests and run `dotnet test`
-test should fail - this is a good fail - Expected:<True>. Actual:<False>
-a compiler error is not a fail.
-
-4. Implement the behavior with the least amount of code possible
-
-TDDcsharp/Models/TDD.cs 
-```csharp
-    public class CarDealership
-    {
-        public bool isCar(string car)
-        {
-            return car == "car";
-        }
-    }
-```
-
-5. Confirm the test passes
-
-Navigate to TDDchsarp.Tests and run `dotnet test`
-
-6. Confirm previous tests still pass
-    N/A no previous tests at the moment so moving on.
-
-7. Check for refactoring
-    Looks as DRY as it can be at the moment. Moving on.
-
-8. Repeat
-    There is probably more that we could use to define a car. Such as, "4 wheels", "steering wheel", "brakes"
-
-1. Identify the simplest possible behavior the program must exhibit"
-
-```csharp
-my notes: 
-"If string equals "car" return boolean true"
-"Other things makeup a car. If strings equals any of "car", "4 wheels", "steering wheel", "brakes" return boolean true
-```
-2. Write a coded test
-
-ModelTests/CarDealership.cs
-```csharp
-    [TestClass]
-    public class CarDealershipTests
-    {
-        [TestMethod]
-        public void isCar_StringEqualCar_True()
-        {
-            CarDealership testCarDealership = new CarDealership();
-            Assert.AreEqual(true, testCarDealership.isCar("car"));
-        }
-
-        [TestMethod]
-        public void isCar_StringNotEqualCarThings_False()
-        {
-            CarDealership testCarDealership = new CarDealership();
-            Assert.AreEqual(false, testCarDealership.isCar("horse"));
-        }
-    }
-```
-
-3. Confirm test fails
-    yes it does "car does not equal "horse"
-
-4. Implement the behavior with the least amount of code possible
-
-```csharp
-    public class CarDealership
-    {
-        public bool isCar(string car)
-        {
-            string[] whatIsCarArray = {"car", "4 wheels", "brakes", "steering wheel"};
-            
-            foreach (string carThing in whatIsCarArray)
-            {
-                if(car == carThing)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-    }
-```
-
-5. Confirm the test passes
-
-Navigate to TDDchsarp.Tests and run `dotnet test`
-
-6. Confirm previous tests still pass
-    `isCar_StringEqualCar_True()`
-    changed name to `isChar_StringEqualCarThing_True()`
-    test too with other things that should be true like "4 wheels"
-    run test again
-    confirm passes
-
-7. Check for refactoring
-    Looks Dry but perhaps a way to loop over the first test so I don't have to add each thing at a time to test or repeat myself with lots of tests. Will leave as is for now since the array of things that define a car is fixed and confident if one string works then the rest will work
-
-8. Repeat
-    What else can go in my car dealership?
-
-    ## License
 * [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/saoud/csharp-TDD-template/blob/main/LICENSE)
-* Copyright 2021 Saoud Rana
-## Contact
-[Saoud Rana](mailto:githubissues@saoud.dev)
+
+Copyright (c) 2021 Saoud Rana
