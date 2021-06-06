@@ -4,10 +4,6 @@ namespace Factory.Controllers
 {
   public class HomeController : Controller
   {
-    [HttpGet("/")]
-    public ActionResult HomeIndex()
-    {
-      return View();
-    }
+    public ActionResult Index() => View();
   }
 }
