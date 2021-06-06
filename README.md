@@ -33,7 +33,7 @@ Go to `Factory.Solution` Folder and create a file called `appsettings.json` file
 
 - Click on the link to my repository: [My Repository](https://github.com/saoud/Factory.Solution.git)
 - Click on the green "Code" button and copy the repository URL
-- Open your terminal and use the command `git clone REPO URL HERE` into the directory you would like to clone the repository
+- Open your terminal and use the command `git clone https://github.com/saoud/Factory.Solution.git` into the directory you would like to clone the repository
 - Open in text editor to view code and make changes
 
 ##### Installing .NET
@@ -51,7 +51,7 @@ MySQL is a type of database software used to create, edit, query, and manage SQL
 - For Mac Users please [Click Here](https://dev.mysql.com/downloads/file/?id=484914) to download MySQL Installer
 - For Windows Users please [Click Here](https://dev.mysql.com/downloads/file/?id=484919)
 
-- Verify MySQL installation by opening the terminal and entering the command `mysql -uroot -p[THEPASSWORDYOUSELECTED]`
+- Verify MySQL installation by opening the terminal and entering the command `mysql -u[USERNAME] -p[THEPASSWORDYOUSELECTED]`
 - If you gain access you will see see the MYSQL command line!
 
 ##### Installing MySQL Workbench
@@ -84,7 +84,7 @@ MySQL is a type of database software used to create, edit, query, and manage SQL
 
 ### Import Database Using Entity Framework Core
 
-1. Navigate to TODO directory in terminal
+1. Navigate to Factory directory in terminal
 2. Use the command `dotnet ef database update` to generate the database through Entity Framework Core
 
 ### Update Database Using Entity Framework Core
@@ -98,7 +98,7 @@ MySQL is a type of database software used to create, edit, query, and manage SQL
 
 ##### View In Browser
 
-- To view in browser, navigate to TODO folder in the command line
+- To view in browser, navigate to Factory folder in the command line
 - Use the command `dotnet run` to execute the compiled code and start a localhost
 - In browser navigate to http://localhost:5000
 - Or Navigate to  https://localhost:5001 for the SSL version.
