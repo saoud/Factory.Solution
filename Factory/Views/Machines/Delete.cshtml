@@ -1,0 +1,16 @@
+@{
+  Layout = "_Layout";
+}
+@model Factory.Models.Machine
+<header>
+  <h2>Confirm delete</h2>
+</header>
+<main>
+  @Html.DisplayNameFor(model => model.Name) @Html.DisplayFor(model => model.Name)
+  @using (Html.BeginForm())
+  {
+    <input type="submit" value="Delete" />
+  }
+  @Html.ActionLink("Cancel Delete", "Index")
+  @Html.ActionLink("Go back home", "Index", "Home")
+</main>
