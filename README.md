@@ -61,12 +61,12 @@ MySQL is a type of database software used to create, edit, query, and manage SQL
 
 ##### Compiling
 
-- Navigate to the TODO folder in the command line
+- Navigate to the Factory folder in the command line
 - Use the command `dotnet build` to compile
 
 ##### Installing Packages
 
-- Navigate to the TODO folder in the command line
+- Navigate to the Factory folder in the command line
 - Use the command `dotnet restore`
 
 <details>
@@ -105,7 +105,8 @@ MySQL is a type of database software used to create, edit, query, and manage SQL
 
 ## Known Bugs
 
-TODO
+Currently getting a build error. 
+`CSC : error CS5001: Program does not contain a static 'Main' method suitable for an entry point`
 
 ## Support and Contact Details
 
