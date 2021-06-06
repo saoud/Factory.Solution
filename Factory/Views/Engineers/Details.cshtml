@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+@using Factory.Models
+@model Factory.Models.Engineer
+<header>
+  <h1>Engineer details</h1>
+</header>
+<main>
+  <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+  <ul>
+    @foreach (MachineEngineer me in Model.MachineEngineers)
+    {
+      <li>
+        @me.Machine.Name
+      </li>
+    }
+  </ul>
+  <p>@Html.ActionLink("Edit Engineer", "Edit", new { id = Model.EngineerId })</p>
+  <p>@Html.ActionLink("Delete Engineer", "Delete", new { id = Model.EngineerId })</p>
+  <p>@Html.ActionLink("Back to list of engineers", "Index")</p>
+  <p>@Html.ActionLink("Back Home", "Index", "Home")</p>
+</main>

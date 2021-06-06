@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Factory.Models.Engineer
+<header>
+  <h1>Add a new engineer</h1>
+
+</header>
+<main>
+  @using (Html.BeginForm())
+  {
+    @Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name)
+
+    @Html.LabelFor(model => model.DateHired)
+    @Html.TextBoxFor(model => model.DateHired,
+  new { @type = "date" })
+    @Html.DropDownList("MachineId")
+    <input type="submit" value="Add engineer" />
+  }
+  <p>@Html.ActionLink("Back to engineers", "Index")</p>
+</main>
