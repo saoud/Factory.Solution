@@ -105,8 +105,7 @@ MySQL is a type of database software used to create, edit, query, and manage SQL
 
 ## Known Bugs
 
-Currently getting a build error. 
-`CSC : error CS5001: Program does not contain a static 'Main' method suitable for an entry point`
+None known
 
 ## Support and Contact Details
 
