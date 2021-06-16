@@ -2,43 +2,23 @@
   Layout = "_Layout";
 }
 
-@using Factory.Models
-
 @model Factory.Models.Engineer
-<header>
-  <h1>Edit Engineer</h1>
-</header>
-<main>
-  <h3>@Html.DisplayFor(model => model.Name)</h3>
-  @using (Html.BeginForm())
-  {
-    @Html.HiddenFor(model => model.EngineerId)
 
-    @Html.LabelFor(model => model.Name)
-    @Html.EditorFor(model => model.Name)
+<h2>Edit</h2>
 
-    <input type="submit" value="Save" />
-  }
-  @using (Html.BeginForm("Create", "MachineEngineers", new { redirectTo = "Engineers" }))
-  {
-    @Html.HiddenFor(model => model.EngineerId)
-    <section>
-      <input type="submit" value="Add Machine" />
-      @Html.DropDownList("MachineId")
-    </section>
-  }
-  <ul>
-    @foreach (MachineEngineer me in Model.MachineEngineers)
-    {
-      <li>
-        @using (Html.BeginForm("Delete", "MachineEngineers", new { id = me.MachineEngineerId, origin = ViewBag.Controller, redirectTo = "Engineers" }))
-        {
-          @me.Machine.Name
-          <input type="submit" value="x">
-        }
-      </li>
-    }
-  </ul>
+<h4>Edit this engineer: @Html.DisplayFor(model => model.EngineerDetails)</h4>
 
-  <p>@Html.ActionLink("Back to machine list", "Index")</p>
-</main>
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.EngineerId)
+
+  @Html.Label("Engineer details: ")
+  @Html.EditorFor(model => model.EngineerDetails)
+
+  @Html.Label("Select machine")
+  @Html.DropDownList("MachineId")
+
+  <input type="submit" value="Save"/>
+}
+
+<p>@Html.ActionLink("Back to Engineers", "Index")</p>

@@ -3,21 +3,18 @@
 }
 
 @model Factory.Models.Engineer
-<header>
-  <h1>Add a new engineer</h1>
 
-</header>
-<main>
-  @using (Html.BeginForm())
-  {
-    @Html.LabelFor(model => model.Name)
-    @Html.TextBoxFor(model => model.Name)
+<h3>Add a new engineer</h3>
 
-    @Html.LabelFor(model => model.DateHired)
-    @Html.TextBoxFor(model => model.DateHired,
-  new { @type = "date" })
-    @Html.DropDownList("MachineId")
-    <input type="submit" value="Add engineer" />
-  }
-  <p>@Html.ActionLink("Back to engineers", "Index")</p>
-</main>
+@using (Html.BeginForm())
+{
+  @Html.Label("Enter engineer details: ")
+  @Html.TextBoxFor(model => model.EngineerDetails)
+
+  @Html.Label("Assign machine")
+  @Html.DropDownList("MachineId")
+
+  <input type="submit" value="Add engineer" class="btn btn-default"/>
+}
+
+<p>@Html.ActionLink("Show all engineers", "Index")</p>

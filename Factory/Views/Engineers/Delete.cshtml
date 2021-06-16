@@ -1,15 +1,15 @@
 @{
   Layout = "_Layout";
 }
+
 @model Factory.Models.Engineer
-<header>
-  <h1>Confirm deleting @Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h1>
-</header>
-<main>
-  @using (Html.BeginForm())
-  {
-    <input type="submit" value="Delete" />
-  }
-  @Html.ActionLink("Back to Engineers", "Index")
-  <p>@Html.ActionLink("Back Home", "Index", "Home")</p>
-</main>
+
+<h2>Are you sure you want to delete this engineer from the database?</h2>
+
+@Html.DisplayName("Engineer Details"): @Html.DisplayFor(model => model.EngineerDetails)
+@using (Html.BeginForm())
+{
+  <input type="submit" value="Delete" />
+}
+
+@Html.ActionLink("Back to Engineers", "Index")
