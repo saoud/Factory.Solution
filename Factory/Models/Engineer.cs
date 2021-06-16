@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace Factory.Models
@@ -7,12 +6,11 @@ namespace Factory.Models
   {
     public Engineer()
     {
-      MachineEngineers = new HashSet<MachineEngineer>();
+      this.JoinEntities = new HashSet<MachineEngineer>();
     }
-    public string Name { get; set; }
-    public int EngineerId { get; set; }
-    public DateTime DateHired { get; set; }
 
-    public virtual ICollection<MachineEngineer> MachineEngineers { get; set; }
+    public int EngineerId { get; set; }
+    public string EngineerDetails { get; set; }
+    public virtual ICollection<MachineEngineer> JoinEntities { get; set; } //unsure if i need a setter here
   }
 }
