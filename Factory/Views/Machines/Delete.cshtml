@@ -1,16 +1,14 @@
 @{
   Layout = "_Layout";
 }
+
 @model Factory.Models.Machine
-<header>
-  <h2>Confirm delete</h2>
-</header>
-<main>
-  @Html.DisplayNameFor(model => model.Name) @Html.DisplayFor(model => model.Name)
-  @using (Html.BeginForm())
-  {
-    <input type="submit" value="Delete" />
-  }
-  @Html.ActionLink("Cancel Delete", "Index")
-  @Html.ActionLink("Go back home", "Index", "Home")
-</main>
+
+<h2>Are you sure you want to delete this machine from the database?</h2>
+
+@Html.DisplayName("Machine details"): @Html.DisplayFor(model => model.MachineDetails)
+@using (Html.BeginForm())
+{
+  <input type="submit" value="Delete" />
+}
+@Html.ActionLink("Back to Factory", "Index")
