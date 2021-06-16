@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using Factory.Models;
 using System.Collections.Generic;
 using System.Linq;
-using Factory.Models;
 
 namespace Factory.Controllers
 {
@@ -16,48 +16,92 @@ namespace Factory.Controllers
       _db = db;
     }
 
-    public List<Engineer> AllEngineers() => _db.Engineers.ToList();
-    public Engineer FindEngineer(int id) => _db.Engineers
-      .Include(engineer => engineer.MachineEngineers)
-      .ThenInclude(join => join.Machine)
-      .FirstOrDefault(engineer => engineer.EngineerId == id);
+    public ActionResult Index()
+    {
+      return View(_db.Engineers.ToList());
+    }
 
-    public void CreateNewEngineerMachine(int machineId, int engineerId) => _db.MachineEngineers.Add(new MachineEngineer() { MachineId = machineId, EngineerId = engineerId });
+    public ActionResult Details(int id)
+    {
+      var thisEngineer = _db.Engineers
+        .Include(engineer => engineer.JoinEntities)
+        .ThenInclude(join => join.Machine)
+        .FirstOrDefault(engineer => engineer.EngineerId == id);
+      return View(thisEngineer);
+    }
 
-    public ActionResult Index() => View(AllEngineers());
     public ActionResult Create()
     {
-      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
+      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "MachineDetails");
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Engineer e, int MachineId)
+    public ActionResult Create(Engineer engineer, int MachineId)
     {
-      _db.Engineers.Add(e);
+      _db.Engineers.Add(engineer);
       _db.SaveChanges();
       if (MachineId != 0)
       {
-        CreateNewEngineerMachine(MachineId, e.EngineerId);
+        _db.MachineEngineer.Add(new MachineEngineer() { MachineId = MachineId, EngineerId = engineer.EngineerId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-    public ActionResult Details(int id) => View(FindEngineer(id));
+
+
     public ActionResult Edit(int id)
     {
-      var thisEngineer = FindEngineer(id);
-      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
+      var thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "MachineDetails");
       return View(thisEngineer);
     }
+
     [HttpPost]
-    public ActionResult Edit(Engineer e)
+    public ActionResult Edit(Engineer engineer, int MachineId)
     {
-      _db.Entry(e).State = EntityState.Modified;
+      if (MachineId != 0)
+      {
+        _db.MachineEngineer.Add(new MachineEngineer() { MachineId = MachineId, EngineerId = engineer.EngineerId });
+      }
+      _db.Entry(engineer).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-    public ActionResult Delete(int id) => View(FindEngineer(id));
+
+    public ActionResult AddMachine(int id)
+    {
+      var thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "MachineDetails");
+      return View(thisEngineer);
+    }
+
+    [HttpPost]
+    public ActionResult AddMachine(Engineer engineer, int MachineId)
+    {
+        if (MachineId != 0)
+        {
+        _db.MachineEngineer.Add(new MachineEngineer() { MachineId = MachineId, EngineerId = engineer.EngineerId });
+        }
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+    }
+
+    public ActionResult Delete(int id)
+    {
+      var thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      return View(thisEngineer);
+    }
+
+    [HttpPost]
+    public ActionResult DeleteMachine(int joinId)
+    {
+        var joinEntry = _db.MachineEngineer.FirstOrDefault(entry => entry.MachineEngineerId == joinId);
+        _db.MachineEngineer.Remove(joinEntry);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+    }
+
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
